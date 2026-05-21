@@ -11,10 +11,10 @@ client.on("message", async (message) => {
     const prompt = message.content.slice(10).trim();
 
     if (!prompt) {
-      return message.reply("❌ Please provide a prompt!");
+      return message.reply("empty");
     }
 
-    const loadingMsg = await message.reply("🎨 Generating image...");
+    const loadingMsg = await message.reply("b patient");
 
     try {
   const encodedPrompt = encodeURIComponent(prompt);
@@ -25,12 +25,12 @@ client.on("message", async (message) => {
   const buffer = Buffer.from(arrayBuffer);
 
   await loadingMsg.delete();
-  await message.channel.send(`✅ Generated: **${prompt}**`, {
+  await message.channel.send(`ur ${prompt}`, {
     files: [{ attachment: buffer, name: "image.png" }],
   });
 } catch (error) {
   console.error("Error:", error.message);
-  await loadingMsg.edit(`❌ Failed to generate image: ${error.message}`);
+  await loadingMsg.edit(`fail`);
 }
   }
 });
